@@ -1,26 +1,60 @@
 import fetch from "node-fetch";
+import fs from "fs";
+
+// API URL
+const url = "https://api.coingecko.com/api/v3/coins/";
+
+const cryptos = ["bitcoin", "ethereum", "ripple", "cardano", "solana"];
+const outputFile = "prices.json";
+
+// API ключ
+const apiKey = "CG-QvP6CpSjC9W4eECCpbzTddBk";  // Замените на свой API ключ
+
+const params = new URLSearchParams({
+  vs_currency: "usd",
+  days: "365",  // Данные за год
+  interval: "daily",
+});
 
 async function fetchPrices(cryptoId) {
-  const url = `https://api.coingecko.com/api/v3/coins/${cryptoId}/market_chart`;
-  const params = new URLSearchParams({
-    vs_currency: "usd", // Валюта (например, USD)
-    days: "180",        // Количество дней (например, последние 180 дней)
-    interval: "daily",  // Интервал данных (например, ежедневный)
-  });
-
   try {
-    const response = await fetch(`${url}?${params.toString()}`);
+    const response = await fetch(`${url}${cryptoId}/market_chart?${params.toString()}`, {
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,  // Использование API ключа
+      }
+    });
     const data = await response.json();
 
-    // Получаем только цены
-    const prices = data.prices.map((entry) => entry[1]); // Второй элемент — это цена
-    console.log(`Prices for ${cryptoId}:`, prices);
-    return prices;
+    if (!data.prices || !Array.isArray(data.prices)) {
+      console.error(`No prices data for ${cryptoId}`);
+      return [];
+    }
+
+    return data.prices.map(entry => entry[1]);
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error(`Error fetching data for ${cryptoId}:`, error);
+    return [];
   }
 }
 
-// Пример вызова функции
-fetchPrices("bitcoin").then((prices) => console.log(prices)); // Для Bitcoin
-fetchPrices("ethereum").then((prices) => console.log(prices)); // Для Ethereum
+async function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function fetchAllPrices(cryptoIds) {
+  const pricesData = {};
+
+  for (const cryptoId of cryptoIds) {
+    console.log(`Fetching data for ${cryptoId}...`);
+    const prices = await fetchPrices(cryptoId);
+    pricesData[cryptoId.toUpperCase()] = prices;
+
+    // Задержка между запросами
+    await sleep(1000);  // Задержка в 1 секунду
+  }
+
+  fs.writeFileSync(outputFile, JSON.stringify(pricesData, null, 2));
+  console.log(`Prices saved to ${outputFile}`);
+}
+
+fetchAllPrices(cryptos);

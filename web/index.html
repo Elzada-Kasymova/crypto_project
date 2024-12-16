@@ -3,16 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Charts</title>
+    <title>Crypto Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        .chart-container {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .chart-container canvas {
+            max-width: 100%;
+            height: auto;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <h1>Crypto Price Charts</h1>
-    <canvas id="bitcoinChart"></canvas>
-    <canvas id="ethereumChart"></canvas>
-    <canvas id="rippleChart"></canvas>
-    <canvas id="cardanoChart"></canvas>
-    <canvas id="solanaChart"></canvas>
+    <h1>Crypto Dashboard</h1>
+    <div class="dashboard">
+        <div class="chart-container">
+            <h3>Bitcoin</h3>
+            <canvas id="bitcoinChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h3>Ethereum</h3>
+            <canvas id="ethereumChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h3>Ripple</h3>
+            <canvas id="rippleChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h3>Cardano</h3>
+            <canvas id="cardanoChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h3>Solana</h3>
+            <canvas id="solanaChart"></canvas>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@ import fs from "fs";
 // API URL
 const url = "https://api.coingecko.com/api/v3/coins/";
 
-const cryptos = ["bitcoin", "ethereum", "ripple", "cardano", "solana"];
+const cryptos = ["cardano", "solana", "polkadot", "bitcoin", "ethereum", "ripple"];  // Добавлены новые криптовалюты
 const outputFile = "prices.json";
 
 // API ключ

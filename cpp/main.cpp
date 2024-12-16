@@ -7,7 +7,7 @@ int main() {
     std::vector<Crypto> cryptos = {
         Crypto("Bitcoin", "BTC"),
         Crypto("Ethereum", "ETH"),
-        Crypto("Ripple", "XRP"),
+        Crypto("XEN", "XRP"),
         Crypto("Cardano", "ADA"),
         Crypto("Solana", "SOL")
     };

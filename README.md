@@ -19,7 +19,7 @@ Installation and Setup
 1. Clone the repository
 Clone the repository to your local machine:
 
-git clone https://github.com/your-username/crypto_project.git
+git clone https://github.com/Elzada-Kasymova/crypto_project.git
 cd crypto_project
 2. Install dependencies
 To work with the API and fetch data, make sure you have Node.js and npm installed. Then, install all dependencies:

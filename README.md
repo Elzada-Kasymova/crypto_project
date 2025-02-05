@@ -1,8 +1,8 @@
-###Crypto Price Charts Project
+### Crypto Price Charts Project
 
 This project is a web application that displays charts of popular cryptocurrencies' price changes over the past year. Cryptocurrency price data is retrieved through an API and visualized using the Chart.js library.
 
-###Project Structure
+### Project Structure
 
 The project includes the following directories and files:
 
@@ -34,7 +34,7 @@ The server will be available at http://127.0.0.1:8080.
 4. Open the web page
 Now, open http://127.0.0.1:8080 to view the cryptocurrency price charts for the past year.
 
-###Technologies
+### Technologies
 
 JavaScript — for API interaction and data visualization.
 Chart.js — for displaying price charts.
@@ -43,7 +43,7 @@ API
 
 Cryptocurrency price data is fetched via the CoinGecko API. You will need to provide the correct API_KEY in the .env file to use the API.
 
-###Data Structure
+### Data Structure
 
 Price data is saved in the prices.json file in the following format:
 
@@ -68,6 +68,6 @@ Contributing
 
 Please fork the repository to make changes and submit a pull request with a description of your improvements. We look forward to your contributions!
 
-###How It Looks
+### How It Looks
 
 ![Picture of site](./images/picture.png)
